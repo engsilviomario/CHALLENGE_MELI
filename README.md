@@ -67,9 +67,7 @@ python analisador_trafego.py -i "Ethernet" -c 100
 ⚠️ Para descobrir o nome da interface:  
 Abra o PowerShell ou CMD e execute:
 
-Get-NetAdapter  
-ou  
-ipconfig
+Get-NetAdapter  ou  ipconfig
 
 ### ✅ Exemplo de Uso no Linux
 
@@ -90,62 +88,46 @@ Após a captura, serão exibidas:
 
 ## 🐳 Executando com Docker (Opcional)
 
-### 🔨 Build da imagem
-
-docker build -t analisador-trafego .
-
-### ▶️ Executar o container
-
-docker run --rm --net=host --privileged analisador-trafego -i eth0
-
-⚠️ O parâmetro --privileged é necessário para permitir acesso à interface de rede.
-
----
-
 ## 📜 Observações Importantes
 
 - No Windows, execute o terminal como Administrador  
 - No Linux, é necessário usar sudo para capturar pacotes
 
----
-
 ## 🐳 Dockerfile (modelo)
 
-# Usa imagem oficial Python
-FROM python:3.10-slim
+O Dockerfile é um arquivo de texto que contém todas as instruções para construir uma imagem Docker. Pense nele como uma receita que diz ao Docker como montar seu container.
 
-# Define diretório de trabalho
-WORKDIR /app
+Características principais:
+Define a imagem base (ex: python:3.10-slim)
 
-# Copia apenas o requirements.txt primeiro para instalar dependências
-COPY requirements.txt /app/
+Especifica dependências a serem instaladas
 
-# Atualiza pip
-RUN pip install --upgrade pip
+Configura o ambiente de execução
 
-# Instala dependências
-RUN pip install -r requirements.txt
+Determina quais arquivos serão incluídos no container
 
-# Copia o restante dos arquivos
-COPY . /app
-
-# Comando padrão (você pode sobrescrever no docker-compose)
-CMD ["python", "analisador_trafego.py", "-i", "eth0", "-c", "50"]
-
-
----
-
-## 📦 requirements.txt
-
-scapy==2.4.5
+Define o comando padrão a ser executado
 
 ---
 
 ## 🐳 docker-compose.yml
 
+O docker-compose.yml é um arquivo YAML que permite definir e gerenciar múltiplos containers como um único serviço.
+
+Características principais:
+Gerencia múltiplos containers simultaneamente
+
+Define redes e volumes compartilhados
+
+Configura variáveis de ambiente
+
+Especifica portas expostas
+
+Controla a escala dos serviços
+
 ### Como usar:
 
-1. Criar o arquivo docker-compose.yml no mesmo diretório do script analisador_trafego.py
+1. Criar o arquivo docker-compose.yml no mesmo diretório do script analisador_trafego.py e do Dockerfile
 2. Rodar:
 
 docker-compose up -d
@@ -162,14 +144,19 @@ python analisador_trafego.py -i eth0 -c 100  #Quantaide de pacotes 100
 
 docker-compose down
 
-### Customizar a interface:
+---
 
-docker-compose run -e INTERFACE="Ethernet" analisador
+## 📦 requirements.txt
+
+O arquivo requirements.txt é um arquivo essencial para projetos Python que utilizam Docker. Ele especifica todas as dependências que seu projeto precisa para funcionar corretamente.
 
 ---
 
 ## ⚡ Extras (profissional):
 
-Podemos adpatar o docker-compose e o scrippt analisador_trafego.py para capturar a interface de Rede do Host também. Pois está pegando 
+Podemos adpatar o docker-compose e o scrippt analisador_trafego.py para capturar a interface de Rede do Host também.
+
+E Customizar a interface:
+docker-compose run -e INTERFACE="Ethernet" analisador
 
 
