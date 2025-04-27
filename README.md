@@ -111,17 +111,27 @@ docker run --rm --net=host --privileged analisador-trafego -i eth0
 
 ## 🐳 Dockerfile (modelo)
 
-FROM python:3.11-slim
+# Usa imagem oficial Python
+FROM python:3.10-slim
 
-RUN apt-get update && apt-get install -y tcpdump iproute2 && apt-get clean
-
-RUN pip install scapy
-
-COPY analisador_trafego.py /app/analisador_trafego.py
-
+# Define diretório de trabalho
 WORKDIR /app
 
-ENTRYPOINT ["python", "analisador_trafego.py"]
+# Copia apenas o requirements.txt primeiro para instalar dependências
+COPY requirements.txt /app/
+
+# Atualiza pip
+RUN pip install --upgrade pip
+
+# Instala dependências
+RUN pip install -r requirements.txt
+
+# Copia o restante dos arquivos
+COPY . /app
+
+# Comando padrão (você pode sobrescrever no docker-compose)
+CMD ["python", "analisador_trafego.py", "-i", "eth0", "-c", "50"]
+
 
 ---
 
@@ -138,7 +148,15 @@ scapy==2.4.5
 1. Criar o arquivo docker-compose.yml no mesmo diretório do script analisador_trafego.py
 2. Rodar:
 
-docker-compose up
+docker-compose up -d
+
+3. Entrar no Container:
+
+docker exec -it analisador_trafego bash
+
+3. Executar o script Python:
+
+python analisador_trafego.py -i eth0 -c 100  #Quantaide de pacotes 100
 
 ### Para parar o container:
 
@@ -150,12 +168,8 @@ docker-compose run -e INTERFACE="Ethernet" analisador
 
 ---
 
-## 🔧 Detalhes do docker-compose.yml:
+## ⚡ Extras (profissional):
 
-volumes: Monta o diretório atual (.) dentro do container, permitindo que ele acesse o script e qualquer alteração feita no código seja refletida automaticamente.
+Podemos adpatar o docker-compose e o scrippt analisador_trafego.py para capturar a interface de Rede do Host também. Pois está pegando 
 
-working_dir: Define o diretório de trabalho dentro do container (onde o código será executado).
 
-network_mode: host: Permite que o container utilize a rede do host para capturar pacotes.
-
-privileged: true: Necessário para que o container tenha permissões suficientes para capturar pacotes de rede.
