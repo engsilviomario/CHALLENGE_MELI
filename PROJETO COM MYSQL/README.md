@@ -1,20 +1,3 @@
-##  Como usar:
-Criar o arquivo docker-compose.yml no mesmo diretório do script analisador_trafego.py e do Dockerfile
-
-Rodar:
-
-docker-compose up -d
-
-Exibindo dados:
-
-docker exec -it mysql_db mysql -u root -p trafego -e "SELECT * FROM trafego.estatisticas;"
-
-informe a senha de acesso ao bd: senha123
-
-registrando mais dados:
-
-docker exec -it analisador_trafego python analisador_trafego.py -i eth0 -c 1000
-
 ## 🧠 O que mudou:
 
 ## docker-compposer.yml
@@ -82,11 +65,21 @@ SHOW TABLES; #Vai exibir a table estatisticas.
 
 SELECT * FROM estatisticas; #Mostra os dados da tabela estatisticas
 
+##  📢 Como usar:
+Criar o arquivo docker-compose.yml no mesmo diretório do script analisador_trafego.py e do Dockerfile
+
+Rodar:
+
+docker-compose up -d
+
 ## ⚡EXECUTANDO SCRIPT E RECEBDENDO OS DADOS FORA DO CONTAINER (NO HOST):
 
 Exibindo dados:
+
 docker exec -it mysql_db mysql -u root -p trafego -e "SELECT * FROM trafego.estatisticas;"
 informe a senha de acesso ao bd: senha123
 
 registrando mais dados:
+
 docker exec -it analisador_trafego python analisador_trafego.py -i eth0 -c 1000
+
