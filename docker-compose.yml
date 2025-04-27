@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  analisador:
+    image: python:3.11-slim
+    container_name: analisador_trafego
+    volumes:
+      - .:/app  # Monta o diretório atual no container
+    working_dir: /app
+    command: ["python", "analisador_trafego.py", "-i", "eth0"]  # Trocar "eth0" pela sua interface de rede
+    network_mode: "host"  # Usado para permitir captura de pacotes na interface de rede
+    privileged: true  # Necessário para acesso ao tráfego da rede
+    environment:
+      - PYTHONUNBUFFERED=1
+    stdin_open: true
+    tty: true
