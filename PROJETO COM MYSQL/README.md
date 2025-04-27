@@ -36,7 +36,7 @@ Rodar:
 docker-compose up -d
 ```
 
-## 📦 Criando BD e Acesso (já foi criado via docker-compose):
+## 📦 Criando BD e Acesso (já foi criado via docker-compose, apenas para mostrar conhecimentos):
 1. Entrar no container MySQL:
 
 ```bash
