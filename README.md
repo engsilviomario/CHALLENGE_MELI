@@ -70,11 +70,15 @@ Rode: Get-NetAdapter ou ipconfig
 sudo python3 analisador_trafego.py -i eth0 -c 50
 
 ___________________________________________________
+
 🎯🚀 Após a captura, serão exibidas:
 
 Total de pacotes capturados
+
 Número de pacotes por protocolo (TCP, UDP, etc.)
+
 Top 5 IPs de origem
+
 Top 5 IPs de destino
 ___________________________________________________
 
