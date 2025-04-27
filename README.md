@@ -35,19 +35,19 @@ Importante: durante a instalação, marque a opção:
 ### Linux (Ubuntu/Debian)
 
 1.Instalar o Python 3.8+
-
-sudo apt update
-sudo apt install python3 python3-pip
+   
+   sudo apt update
+   sudo apt install python3 python3-pip
 
 2.Instalar Scapy
 
-pip3 install scapy
+   pip3 install scapy
 
 3. Executar como root
 
-sudo python3 analisador_trafego.py -i eth0
-
-(Em Linux, o Scapy usa o libpcap já instalado.)
+   sudo python3 analisador_trafego.py -i eth0
+   
+   (Em Linux, o Scapy usa o libpcap já instalado.)
 
 
 ## 🚀 Como Executar:
@@ -59,7 +59,7 @@ python analisador_trafego.py -i "NOME_DA_INTERFACE" -c QUANTIDADE
 
 📈 Exemplo de Uso Windows
 
-python analisador_trafego.py -i "Ethernet" -c 100
+   python analisador_trafego.py -i "Ethernet" -c 100
 
 ⚠️ Para descobrir o nome correto:
 Abra o PowerShell ou CMD.
@@ -67,7 +67,7 @@ Rode: Get-NetAdapter ou ipconfig
 
 📈 Exemplo de Uso Linux
 
-sudo python3 analisador_trafego.py -i eth0 -c 50
+   sudo python3 analisador_trafego.py -i eth0 -c 50
 
 ___________________________________________________
 
@@ -88,11 +88,11 @@ OPCIONAL DOCKER
 📦 Rodar via Docker (opcional)
 
 Build da imagem:
-docker build -t analisador-trafego .
+   docker build -t analisador-trafego .
 
 Executar o container:
-docker run --rm --net=host --privileged analisador-trafego -i eth0
-⚠️ O parâmetro --privileged é necessário para permitir acesso a interfaces de rede.
+   docker run --rm --net=host --privileged analisador-trafego -i eth0
+   ⚠️ O parâmetro --privileged é necessário para permitir acesso a interfaces de rede.
 
 📜 Observações Importantes
 No Windows, é obrigatório rodar o terminal como Administrador.
@@ -100,23 +100,23 @@ No Linux, é obrigatório usar sudo para capturar pacotes.
 
 🐳 Modelo Dockerfile
 
-# Usar imagem base oficial do Python
-FROM python:3.11-slim
+   # Usar imagem base oficial do Python
+   FROM python:3.11-slim
+   
+   # Atualizar o sistema e instalar ferramentas necessárias
+   RUN apt-get update && apt-get install -y tcpdump iproute2 && apt-get clean
+   
+   # Instalar dependências do Python
+   RUN pip install scapy
+   
+   # Copiar o script para dentro da imagem
+   COPY analisador_trafego.py /app/analisador_trafego.py
+   
+   # Definir diretório de trabalho
+   WORKDIR /app
 
-# Atualizar o sistema e instalar ferramentas necessárias
-RUN apt-get update && apt-get install -y tcpdump iproute2 && apt-get clean
-
-# Instalar dependências do Python
-RUN pip install scapy
-
-# Copiar o script para dentro da imagem
-COPY analisador_trafego.py /app/analisador_trafego.py
-
-# Definir diretório de trabalho
-WORKDIR /app
-
-# Comando padrão (pode ser sobrescrito na hora do run)
-ENTRYPOINT ["python", "analisador_trafego.py"]
+   # Comando padrão (pode ser sobrescrito na hora do run)
+   ENTRYPOINT ["python", "analisador_trafego.py"]
 
 📜 requirements.txt
 Esse arquivo facilita a instalação das dependências necessárias para o seu projeto em um único comando.
@@ -133,14 +133,14 @@ Criar o docker-compose.yml no mesmo diretório do seu script analisador_trafego.
 
 Rodar o container com o seguinte comando:
 
-docker-compose up
+   docker-compose up
 Isso vai baixar a imagem do Python, instalar o Scapy, copiar o script para dentro do container e executar o analisador_trafego.py.
 
 Para parar o container, use:
 
-docker-compose down
+   docker-compose down
 
 🧠 você pode customizar mais ainda a execução
 Variar a interface: Quando for rodar o docker-compose, você pode sobrescrever a interface de rede que o script vai usar, por exemplo:
 
-docker-compose run -e INTERFACE="Ethernet" analisador
+   docker-compose run -e INTERFACE="Ethernet" analisador
