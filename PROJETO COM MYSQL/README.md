@@ -17,6 +17,7 @@ network_mode: host só funciona no Linux! (No Windows/macOS pode ter que adaptar
 Adicionado o driver oficial para conectar Python → MySQL.
 
 scapy
+
 mysql-connector-python
 
 
