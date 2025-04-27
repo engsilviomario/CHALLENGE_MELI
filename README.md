@@ -150,7 +150,7 @@ docker-compose run -e INTERFACE="Ethernet" analisador
 
 ---
 
-##🔧 Detalhes do docker-compose.yml:
+## 🔧 Detalhes do docker-compose.yml:
 
 volumes: Monta o diretório atual (.) dentro do container, permitindo que ele acesse o script e qualquer alteração feita no código seja refletida automaticamente.
 
