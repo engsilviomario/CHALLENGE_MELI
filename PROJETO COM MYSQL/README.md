@@ -27,9 +27,14 @@ Captura pacotes ✅
 Conta protocolos e IPs ✅
 Salva as estatísticas no MySQL (tabela estatisticas) ✅
 
+##  📢 Como usar:
+Criar o arquivo docker-compose.yml no mesmo diretório do script analisador_trafego.py e do Dockerfile
 
+Rodar:
 
-## 📦 Resumo do que falta:
+docker-compose up -d
+
+## 📦 Criando BD e Acesso:
 1. Entrar no container MySQL:
 
 docker exec -it mysql_db bash
@@ -64,13 +69,6 @@ USE trafego; #para usar a tabela de trafego
 SHOW TABLES; #Vai exibir a table estatisticas.
 
 SELECT * FROM estatisticas; #Mostra os dados da tabela estatisticas
-
-##  📢 Como usar:
-Criar o arquivo docker-compose.yml no mesmo diretório do script analisador_trafego.py e do Dockerfile
-
-Rodar:
-
-docker-compose up -d
 
 ## ⚡EXECUTANDO SCRIPT E RECEBDENDO OS DADOS FORA DO CONTAINER (NO HOST):
 
