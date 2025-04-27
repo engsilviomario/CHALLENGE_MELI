@@ -1,17 +1,20 @@
-# Usar imagem base oficial do Python
-FROM python:3.11-slim
+# Usa imagem oficial Python
+FROM python:3.10-slim
 
-# Atualizar o sistema e instalar ferramentas necessárias
-RUN apt-get update && apt-get install -y tcpdump iproute2 && apt-get clean
-
-# Instalar dependências do Python
-RUN pip install scapy
-
-# Copiar o script para dentro da imagem
-COPY analisador_trafego.py /app/analisador_trafego.py
-
-# Definir diretório de trabalho
+# Define diretório de trabalho
 WORKDIR /app
 
-# Comando padrão (pode ser sobrescrito na hora do run)
-ENTRYPOINT ["python", "analisador_trafego.py"]
+# Copia apenas o requirements.txt primeiro para instalar dependências
+COPY requirements.txt /app/
+
+# Atualiza pip
+RUN pip install --upgrade pip
+
+# Instala dependências
+RUN pip install -r requirements.txt
+
+# Copia o restante dos arquivos
+COPY . /app
+
+# Comando padrão (você pode sobrescrever no docker-compose)
+CMD ["python", "analisador_trafego.py", "-i", "eth0", "-c", "50"]
