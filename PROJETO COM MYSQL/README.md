@@ -83,11 +83,13 @@ SELECT * FROM estatisticas; #Mostra os dados da tabela estatisticas
 ## ⚡EXECUTANDO SCRIPT E RECEBDENDO OS DADOS FORA DO CONTAINER (NO HOST):
 
 Exibindo dados:
-
+```bash
 docker exec -it mysql_db mysql -u root -p trafego -e "SELECT * FROM trafego.estatisticas;"
+```
 informe a senha de acesso ao bd: senha123
 
 registrando mais dados:
-
+```bash
 docker exec -it analisador_trafego python analisador_trafego.py -i eth0 -c 1000
+```
 
