@@ -32,7 +32,9 @@ Criar o arquivo docker-compose.yml no mesmo diretório do script analisador_traf
 
 Rodar:
 
-```docker-compose up -d```
+```bash
+docker-compose up -d
+```
 
 ## 📦 Criando BD e Acesso (já foi criado via docker-compose):
 1. Entrar no container MySQL:
