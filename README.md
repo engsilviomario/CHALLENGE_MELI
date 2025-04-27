@@ -124,15 +124,19 @@ scapy==2.4.5
 Agora, vamos usar o docker-compose para facilitar o processo de levantar o container com tudo que você precisa já configurado. Com isso, não será necessário rodar o comando docker build manualmente, apenas docker-compose up.
 
 Como usar o docker-compose.yml:
+
 Criar o docker-compose.yml no mesmo diretório do seu script analisador_trafego.py.
 
 Rodar o container com o seguinte comando:
+
 docker-compose up
 Isso vai baixar a imagem do Python, instalar o Scapy, copiar o script para dentro do container e executar o analisador_trafego.py.
 
 Para parar o container, use:
+
 docker-compose down
 
 🧠 você pode customizar mais ainda a execução
 Variar a interface: Quando for rodar o docker-compose, você pode sobrescrever a interface de rede que o script vai usar, por exemplo:
+
 docker-compose run -e INTERFACE="Ethernet" analisador
