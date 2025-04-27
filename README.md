@@ -168,7 +168,7 @@ O arquivo requirements.txt é um arquivo essencial para projetos Python que util
 
 ## ⚡ Extras (profissional):
 
-Podemos adpatar o docker-compose e o scrippt analisador_trafego.py para capturar a interface de Rede do Host também.
+Podemos adpatar o docker-compose e o scrippt analisador_trafego.py para capturar a interface de Rede do Host também e uma variavél para informar a interface.
 
 E Customizar a interface:
 docker-compose run -e INTERFACE="Ethernet" analisador
