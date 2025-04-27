@@ -39,15 +39,20 @@ docker-compose up -d
 ## 📦 Criando BD e Acesso (já foi criado via docker-compose):
 1. Entrar no container MySQL:
 
+```bash
 docker exec -it mysql_db bash
+```
 
 2. Dentro do bash do container, entrar no MySQL:
 
+```bash
 mysql -u root -p
+```
 (Senha vai ser a que você definiu no docker-compose.yml, por exemplo root ou senha123.)
 
 3. Criar o banco de dados e tabela:
 
+```bash
 CREATE DATABASE trafego;
 USE trafego;
 
@@ -60,11 +65,12 @@ CREATE TABLE estatisticas (
     top5_destino TEXT,
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+```
 
 ## 🚀 Depois disso e alguns Comandos:
 
 O analisador_trafego.py já vai conseguir conectar no banco, salvar os dados toda vez que rodar!
-
+```bash
 show databases; #Mostas as tabelas
 
 USE trafego; #para usar a tabela de trafego
@@ -72,6 +78,7 @@ USE trafego; #para usar a tabela de trafego
 SHOW TABLES; #Vai exibir a table estatisticas.
 
 SELECT * FROM estatisticas; #Mostra os dados da tabela estatisticas
+```
 
 ## ⚡EXECUTANDO SCRIPT E RECEBDENDO OS DADOS FORA DO CONTAINER (NO HOST):
 
