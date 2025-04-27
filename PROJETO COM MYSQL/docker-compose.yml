@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  analisador:
+    build: .
+    container_name: analisador_trafego
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: ["tail", "-f", "/dev/null"]  # Mantém o contêiner em execução indefinidamente
+    network_mode: "host"
+    privileged: true
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DB_HOST=localhost
+      - DB_USER=root
+      - DB_PASSWORD=senha123
+      - DB_NAME=trafego
+    stdin_open: true
+    tty: true
+
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: senha123
+      MYSQL_DATABASE: trafego
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
