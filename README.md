@@ -38,16 +38,22 @@ Captura informações como IPs de origem e destino, protocolo e tamanho dos paco
 
 1. **Instalar o Python 3.8+**
 
+```
    sudo apt update  
    sudo apt install python3 python3-pip
+```
 
 2. **Instalar o Scapy**
 
+```
    pip3 install scapy
+```
 
 3. **Executar como root**
 
+```bash
    sudo python3 analisador_trafego.py -i eth0
+```
 
    (O Scapy no Linux utiliza a libpcap, que já vem instalada.)
 
@@ -55,14 +61,17 @@ Captura informações como IPs de origem e destino, protocolo e tamanho dos paco
 
 ## 🚀 Como Executar
 
+```bash
 python analisador_trafego.py -i "NOME_DA_INTERFACE" -c QUANTIDADE
+```
 
 - -i ou --interface: Nome da interface de rede (ex: "Ethernet", "Wi-Fi", eth0)
 - -c ou --count: (Opcional) Número de pacotes a capturar. Use 0 para captura infinita.
 
 ### ✅ Exemplo de Uso no Windows
-
+```
 python analisador_trafego.py -i "Ethernet" -c 100
+```
 
 ⚠️ Para descobrir o nome da interface:  
 Abra o PowerShell ou CMD e execute:
@@ -70,8 +79,9 @@ Abra o PowerShell ou CMD e execute:
 Get-NetAdapter  ou  ipconfig
 
 ### ✅ Exemplo de Uso no Linux
-
+```bash
 sudo python3 analisador_trafego.py -i eth0 -c 50
+```
 
 ---
 
@@ -129,20 +139,24 @@ Controla a escala dos serviços
 
 1. Criar o arquivo docker-compose.yml no mesmo diretório do script analisador_trafego.py e do Dockerfile
 2. Rodar:
-
+```bash
 docker-compose up -d
+```
 
 3. Entrar no Container:
-
+```bash
 docker exec -it analisador_trafego bash
+```
 
 3. Executar o script Python:
-
+```bash
 python analisador_trafego.py -i eth0 -c 100  #Quantaide de pacotes 100
+```
 
 ### Para parar o container:
-
+```bash
 docker-compose down
+```
 
 ---
 
