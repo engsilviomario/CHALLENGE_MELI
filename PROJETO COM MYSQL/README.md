@@ -74,7 +74,7 @@ SELECT * FROM estatisticas;
 
 Mostra os dados da tabela estatisticas
 
-## ⚡EXECUTANDO DIRETO FORA DO CONTAINER:
+## ⚡EXECUTANDO SCRIPT E RECEBDENDO OS DADOS FORA DO CONTAINER (NO HOST):
 
 Exibindo dados:
 docker exec -it mysql_db mysql -u root -p trafego -e "SELECT * FROM trafego.estatisticas;"
