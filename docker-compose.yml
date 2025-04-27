@@ -2,7 +2,8 @@ version: "3.9"
 
 services:
   analisador:
-    image: python:3.11-slim
+    build: . # Isso fará com que o Docker construa a imagem usando o Dockerfile
+    image: python:3.10-slim  # Altere para python:3.10-slim
     container_name: analisador_trafego
     volumes:
       - .:/app  # Monta o diretório atual no container
