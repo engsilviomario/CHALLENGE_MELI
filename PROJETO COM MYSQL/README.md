@@ -1,6 +1,6 @@
 ## 🧠 O que mudou:
 
-## docker-compposer.yml
+## docker-composer.yml
 Criado o serviço db para o MySQL 8.0
 
 analisador agora depende de db (depends_on) para garantir que o MySQL já esteja subindo
