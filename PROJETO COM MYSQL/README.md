@@ -10,7 +10,7 @@ Variáveis de ambiente no analisador (DB_HOST, DB_USER, etc.)
 network_mode: host só funciona no Linux! (No Windows/macOS pode ter que adaptar depois)
 
 
-## requerimentes.txt:
+## requeriments.txt:
 
 Adicionado o driver oficial para conectar Python → MySQL.
 
@@ -36,7 +36,7 @@ Rodar:
 docker-compose up -d
 ```
 
-## 📦 Criando BD e Acesso (já foi criado via docker-compose, apenas para mostrar conhecimentos):
+## 📦 Criando BD e Acesso (Apenas para mostrar conhecimentos):
 1. Entrar no container MySQL:
 
 ```bash
@@ -80,7 +80,7 @@ SHOW TABLES; #Vai exibir a table estatisticas.
 SELECT * FROM estatisticas; #Mostra os dados da tabela estatisticas
 ```
 
-## ⚡EXECUTANDO SCRIPT E RECEBDENDO OS DADOS FORA DO CONTAINER (NO HOST):
+## ⚡RECEBENDO OS DADOS DA TABELA FORA DO CONTAINER E ADICIOANDO MAIS DADOS NO BD MYSQL (NO HOST):
 
 Exibindo dados:
 ```bash
