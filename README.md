@@ -61,6 +61,8 @@ Captura informações como IPs de origem e destino, protocolo e tamanho dos paco
 
 ## 🚀 Como Executar
 
+Execute o PowerShell dentro da pasta do projeto.
+
 ```bash
 python analisador_trafego.py -i "NOME_DA_INTERFACE" -c QUANTIDADE
 ```
